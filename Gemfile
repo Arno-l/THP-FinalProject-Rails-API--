@@ -46,9 +46,10 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem "activestorage"
-  gem "faker"
+ 
 end
 
+gem "faker"
 gem 'dotenv-rails'
 gem "devise", "~> 4.8"
 gem "devise-jwt", "~> 0.9.0"
