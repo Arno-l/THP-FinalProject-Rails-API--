@@ -8,6 +8,6 @@ class UserMailer < ApplicationMailer
     @url  = 'http://monsite.fr/login' 
 
     # c'est cet appel à mail() qui permet d'envoyer l’e-mail en définissant destinataire et sujet.
-    mail(to: @user.email, subject: 'Votre nouveau mot de passe !', from: 'no-reply@pokeland.fr' ) 
+    mail(to: @user.email, subject: 'Votre nouveau mot de passe !' ) 
     end
 end
