@@ -26,6 +26,7 @@ puts " ---------- users created ------------"
         description: Faker::Lorem.sentence,
         stock: 99,
         year: 2021,
+        condition: "neuf",
         user_id: User.last.id
     )
     product.image.attach(io: File.open(Rails.root.join('app/assets/images/images.jpeg')),
