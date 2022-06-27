@@ -4,8 +4,9 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-    @products.each { |product| 
-    product.image_path = url_for(product.image) } 
+    @products.each do |product| 
+    product.image_path = url_for(product.image) 
+    end 
     render json: @products 
   end
 
