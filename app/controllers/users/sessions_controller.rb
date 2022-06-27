@@ -7,7 +7,8 @@ class Users::SessionsController < Devise::SessionsController
     def respond_with(_resource, _opts = {})
       render json: {
         message: 'You are logged in.',
-        user: current_user
+        user: current_user,
+        success: true
       }, status: :ok
     end
   
@@ -18,7 +19,7 @@ class Users::SessionsController < Devise::SessionsController
     end
   
     def log_out_success
-      render json: { message: 'You are logged out.' }, status: :ok
+      render json: { message: 'You are logged out.', success: false }, status: :ok
     end
   
     def log_out_failure
