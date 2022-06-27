@@ -23,7 +23,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(product_params)
-
+    @product.attach(params[:image])
     if @product.save
       render json: @product, status: :created, location: @product
     else
