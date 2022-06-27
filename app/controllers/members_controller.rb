@@ -3,10 +3,20 @@ class MembersController < ApplicationController
     before_action :authenticate_user!
   
     def show
-      user = get_user_from_token
+      @user = get_user_from_token
       render json: {
         message: "If you see this, you're in!",
-        user: user
+        user: @user
+      }
+    end
+
+    def update
+      @user = get_user_from_token
+      @user.update(use_params)
+      @user.save
+      render json: {
+        message: "User updated",
+        user: @user
       }
     end
   
@@ -17,5 +27,9 @@ class MembersController < ApplicationController
       ENV['DEVISE_JWT_SECRET_KEY']).first
       user_id = jwt_payload['sub']
       User.find(user_id.to_s)
+    end
+
+    def use_params
+      params.require(:user).permit(:first_name, :last_name, :email, :phone)
     end
   end
