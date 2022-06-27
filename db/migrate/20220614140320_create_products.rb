@@ -8,6 +8,7 @@ class CreateProducts < ActiveRecord::Migration[7.0]
       t.integer :year
       t.integer :stock
       t.string :condition
+      t.string :image_path
       t.belongs_to :user, foreign_key: true
       t.timestamps
     end
