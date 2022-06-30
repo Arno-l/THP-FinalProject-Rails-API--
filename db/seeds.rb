@@ -29,7 +29,7 @@ puts " ---------- users created ------------"
         condition: "neuf",
         user_id: User.last.id
     )
-    product.image.attach(io: File.open(Rails.root.join('app', 'assets', 'images', "images.jpeg")),
+    product.image.attach(io: File.open(Rails.root.join('app/assets/images/images.jpeg')),
      filename: 'images.jpeg')
 end
 

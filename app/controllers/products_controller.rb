@@ -3,8 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all.with_attached_image
-    render json: @products
+    @products = Product.all
+    @products.each do |product| 
+    product.image_path = url_for(product.image) 
+    end 
+    render json: @products 
   end
 
   # GET /products/1
