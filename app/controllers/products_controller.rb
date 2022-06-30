@@ -4,9 +4,6 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-    @products.each do |product| 
-    product.image_path = url_for(product.image) 
-    end 
     render json: @products 
   end
 
@@ -23,7 +20,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(product_params)
-    @product.attach(params[:image])
+  
     if @product.save
       render json: @product, status: :created, location: @product
     else
