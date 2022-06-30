@@ -9,11 +9,7 @@ class ProductsController < ApplicationController
 
   # GET /products/1
   def show
-    if @product.image.attached? 
-      render json: @product.as_json().merge(
-        image_path: url_for(@product.image))
-   else 
-     render json: @product.as_json
+   render json: @product
   end 
    end
 
