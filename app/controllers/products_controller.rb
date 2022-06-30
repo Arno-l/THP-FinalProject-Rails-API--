@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   def show
    render json: @product
-  end 
    end
 
   # POST /products
