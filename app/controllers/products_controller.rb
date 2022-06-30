@@ -3,11 +3,10 @@ class ProductsController < ApplicationController
 
   # GET /products
   def index
-    @products = Product.all
-    @products.each do |product| 
-    product.image_path = url_for(product.image) 
-    end 
-    render json: @products 
+    @products = Product.all.joins(:image_attachment)
+    render json: @products.map { |product| 
+      product.as_json().merge(
+      image_path: url_for(product.image) )}  
   end
 
   # GET /products/1
@@ -23,7 +22,7 @@ class ProductsController < ApplicationController
   # POST /products
   def create
     @product = Product.new(product_params)
-    @product.attach(params[:image])
+
     if @product.save
       render json: @product, status: :created, location: @product
     else
@@ -53,6 +52,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :price, :country, :description, :stock, :condition, :year, :user_id, :image)
+      params.require(:product).permit(:name, :price, :country, :description, :stock, :condition, :year, :image)
     end
 end
