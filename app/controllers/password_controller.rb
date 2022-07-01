@@ -2,7 +2,7 @@ require 'faker'
 
 class PasswordController < ApplicationController
   def forgot_password
-    @user = User.find_by(email: post_params)
+    @user = User.find(params.permit(:email))
 
     password = Faker::Internet.password
     @user.password = password
@@ -21,6 +21,5 @@ class PasswordController < ApplicationController
 
   def post_params
     params.require(:user).permit(:email)
-    return params[:email]
   end
 end
