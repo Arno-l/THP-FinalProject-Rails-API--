@@ -2,14 +2,11 @@ require 'faker'
 
 class PasswordController < ApplicationController
   def forgot_password
-    @user = User.find(params.permit(:email))
-    unless (@user) do
       User.all.each do |user|
         if (user.email.include? params[:email]) do
           @user = user
           break
         end
-    end
 
     password = Faker::Internet.password
     @user.password = password
