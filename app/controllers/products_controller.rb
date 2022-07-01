@@ -4,28 +4,18 @@ class ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
-    @products.each do |product|
-      if @product.image.attached? do
-        product.image_path = url_for(product.image)
-      end
-    end
     render json: @products 
   end
 
   # GET /products/1
   def show
-    if @product.image.attached? 
-      render json: @product.as_json().merge(
-        image_path: url_for(@product.image))
-   else 
-     render json: @product.as_json
-  end 
+   render json: @product
    end
 
   # POST /products
   def create
     @product = Product.new(product_params)
-    @product.attach(params[:image])
+  
     if @product.save
       render json: @product, status: :created, location: @product
     else
@@ -55,6 +45,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.require(:product).permit(:name, :price, :country, :description, :stock, :condition, :year, :user_id, :image)
+      params.require(:product).permit(:name, :price, :country, :description, :stock, :condition, :year, :user_id, :image_path)
     end
 end
