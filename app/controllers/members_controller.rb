@@ -1,3 +1,4 @@
+require 'faker'
 
 class MembersController < ApplicationController
     before_action :authenticate_user!
@@ -19,7 +20,7 @@ class MembersController < ApplicationController
         user: @user
       }
     end
-  
+      
     private
   
     def get_user_from_token

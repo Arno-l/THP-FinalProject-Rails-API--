@@ -1,8 +1,4 @@
-require 'faker'
-
 class PasswordController < ApplicationController
- 
- 
   def forgot_password
     @user = User.find(params[:id])
     password = Faker::Internet.password
